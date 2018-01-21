@@ -2,14 +2,6 @@
 
 class MSdata{
 
-public function sum($a1,$b1)
-
-{
-
-$sum=$a1+$b1;
-
-return $sum;
-}
 
 public function MSformopen($name){
 
@@ -19,17 +11,12 @@ return($data);
 }
 
 
-
-
-
-
-
-
-public function MSform($name,$data=array()){
+public function MSform($name,$task="",$data=array()){
 	if($data){
 
-	
-	 
+	//echo $task;
+	//exit();
+
 if($data['type']=="text"){ $data="text";
 $ele="$name : <input type=\"text\" name=\"form-1-$name-text\"> <br /> <br />";
 
@@ -76,6 +63,8 @@ $ele=$ele."<input type=\"radio\" name=\"$name\" value=\"$val\"> $key<br>";
 }
 
 }
+//echo $task;
+//exit();
 
 else{
 
@@ -87,10 +76,11 @@ else{
 
 	
 $markup= $ele;
+if($task){
+$markup=$markup."<input type=\"hidden\" name=\"task\" value=\"$task\"><br>";
 
 
-
-
+}
 
 
 
@@ -109,20 +99,22 @@ return($data);
 }
 }
 
-$ss= new MSdata();
+//$ss= new MSdata();
 
 $selectdata=array("name1"=>"value1","name2"=>"value2","name3"=>"value2");
 $dataselect=array("type"=>"select","datas"=>$selectdata);
 
 
-function create_form($name,$fields=array(),$val){
+function create_form($name,$fields=array(),$val,$task=""){
 $ss= new MSdata();
+//echo $task;
+//exit();
  echo $ss->MSformopen($name);
 foreach($fields as $key =>$eld){
 	
 $name=$eld['name'];
 
-echo $ss->MSform($name,$eld);
+echo $ss->MSform($name,$task,$eld);
 
 
 }
