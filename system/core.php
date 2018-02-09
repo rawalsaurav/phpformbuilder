@@ -5,7 +5,7 @@ class MSdata{
 
 public function MSformopen($name){
 
-$data="<form action=\"handler.php?formname=$name\"  method=\"post\">";
+$data="<form action=\"system/handler.php?formname=$name\"  method=\"post\">";
 return($data);
 
 }
@@ -18,7 +18,7 @@ public function MSform($name,$task="",$data=array()){
 	//exit();
 
 if($data['type']=="text"){ $data="text";
-$ele="$name : <input type=\"text\" name=\"form-1-$name-text\"> <br /> <br />";
+$ele="$name : <input type=\"text\" name=\"$name\"> <br /> <br />";
 
 
 }
@@ -101,8 +101,6 @@ return($data);
 
 //$ss= new MSdata();
 
-$selectdata=array("name1"=>"value1","name2"=>"value2","name3"=>"value2");
-$dataselect=array("type"=>"select","datas"=>$selectdata);
 
 
 function create_form($name,$fields=array(),$val,$task=""){
