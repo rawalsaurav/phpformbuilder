@@ -1,5 +1,15 @@
 <?php
 
+require_once 'components/vendor/autoload.php';
+
+$loader = new Twig_Loader_Filesystem('system/templates/');
+
+ // Instantiate our Twig
+$twig = new Twig_Environment($loader);
+
+
+
+
 class MSdata{
 
 
