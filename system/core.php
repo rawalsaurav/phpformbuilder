@@ -1,12 +1,7 @@
 <?php
 
-require_once 'components/vendor/autoload.php';
 
-$loader = new Twig_Loader_Filesystem('system/templates/');
-
- // Instantiate our Twig
-$twig = new Twig_Environment($loader);
-
+define("template","everest");
 
 
 
@@ -19,6 +14,45 @@ $data="<form action=\"system/handler.php?formname=$name\"  method=\"post\">";
 return($data);
 
 }
+
+public function parser($string, $start, $end){
+    $string = ' ' . $string;
+    $ini = strpos($string, $start);
+    if ($ini == 0) return '';
+    $ini += strlen($start);
+    $len = strpos($string, $end, $ini) - $ini;
+    return substr($string, $ini, $len);
+}
+
+public function replacer($old,$new,$data){
+
+$data=str_replace($old, $new, $data);
+return($data);
+
+}
+
+
+
+public function Xrender($input,$changes=array()){
+
+foreach($changes as $key=>$value){
+$input=$this->replacer($key,$value,$input);
+	
+
+}
+
+return($input);
+
+
+
+
+}
+
+
+
+
+
+
 
 
 public function MSform($name,$task="",$data=array()){
@@ -107,28 +141,46 @@ $data="<input type=\"submit\" value=\"$value\"></form>";
 return($data);
 
 }
+
+
+
+
+
+public function create_form($name,$fields=array(),$val,$task=""){
+$html='';
+//echo $task;
+//exit();
+ $html=$html.$this->MSformopen($name);
+foreach($fields as $key =>$eld){
+	
+$name=$eld['name'];
+
+$html=$html.$this->MSform($name,$task,$eld);
+
+
+}
+ $html= $html.$this->MSformclose($val);
+ return($html);
+
+}
+
+
+
+
+
+
+
+
+
+
+
 }
 
 //$ss= new MSdata();
 
 
 
-function create_form($name,$fields=array(),$val,$task=""){
-$ss= new MSdata();
-//echo $task;
-//exit();
- echo $ss->MSformopen($name);
-foreach($fields as $key =>$eld){
-	
-$name=$eld['name'];
 
-echo $ss->MSform($name,$task,$eld);
-
-
-}
- echo $ss->MSformclose($val);
-
-}
 
 
 
