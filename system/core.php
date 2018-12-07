@@ -2,9 +2,9 @@
 
 
 define("template","everest");
+//$menulinks=array();
 
-
-
+$menulinks=array();
 class MSdata{
 
 
@@ -176,8 +176,9 @@ $html=$html.$this->MSform($name,$task,$eld);
 
 }
 
-//$ss= new MSdata();
 
+
+//$ss= new MSdata();
 
 
 

@@ -5,9 +5,23 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+
 // error_reporting( E_ALL );
  //exit();
 include("system/core.php");
+foreach(glob('system/xtensions/*/'. "/*.php") as $file){
+    require $file;
+}
+foreach ($menulinks as $key=> $val){
+if(isset($_GET[$key])){
+
+echo $$key;
+exit();
+
+}
+
+
+}
 
 $xtender=new Msdata();
 
@@ -33,7 +47,7 @@ $data= $twigs->render('index.html', array('named' => 'Fabien','red'=>'<h1>HEAD</
 
 echo $data;
 
-
+//echo $plldata;
 
 
 
